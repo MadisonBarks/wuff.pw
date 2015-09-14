@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/wuffy_
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://wuff.pw
+  * I am wuffy_ (https://keybase.io/wuffy_) on keybase.
+  * I have a public key with fingerprint FD0F 6CAC 783F 5A77 D934  43A5 5CBA 3CE6 CC1C 7411
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "fd0f6cac783f5a77d93443a55cba3ce6cc1c7411",
+            "host": "keybase.io",
+            "key_id": "5cba3ce6cc1c7411",
+            "kid": "0101314e7e6bae30f659c2364790e206d03c313e2e474a4917a3a59ef1da3a924a3a0a",
+            "uid": "90395de01c526ffa3b0e47bb34cdfd19",
+            "username": "wuffy_"
+        },
+        "service": {
+            "hostname": "wuff.pw",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1442237332,
+    "expire_in": 157680000,
+    "prev": "9641709e3571a7e7a1b9f502aaec0a47fd82262621f44a510f54e6259ee10e02",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.43
+Comment: https://keybase.io/crypto
+
+yMITAnicbVJbSBRRGN41L7h2UckoCLUprED0nDlnZnY2qIeikAqiMCyC5czMmXXS
+nVlnx1smuAQFGVhk+ZBRiFCJL0L1YCQqFpRJotIFI0WJQotUpFDLOiMFPXQOnMv3
+f9/38//8fWtWeXzegvCed4XZzi1vf8+uck/ht/7GGk6xtGouUMOV0JVLN8wQtSO2
+YTpcgNM1oIsqUSU/0gUiSZqMMEZEEFSFIJWKqgpVCUPI5XLFVtRVMBuFRGmeYTGM
+fYKGxtD/8EtWAgACiCCmEhUVQhHLJsgqj0QsyYDyQNQAUhFElKdYwgTLUCIsvUx1
+qLGHzGN2AsLsylfsZIBkQaMAqgIv6jpBCmBCRUFY1XQNyi4xSm2ThCljV5brenWQ
+q83lGFZhqNRtgFvHP/G8SCUTRWzLsVSrlIHFjhOJBlyRUx1ZYVEl+EcfVAxTYw1k
+igpqRw3L5AKQMVXHcA0hxjyPJIT4XI5WRQybBg2XIUiiH7Dl5qEVbhkihhKQKRIk
+SCQqEajIugB4QqgKCJZ0zc/zIttQx5gIEOgCpiLP+kIhoIDn3IrKTIt5M1OHhJhn
+1AiZxCm3KVfb230q3uP1eRIT4twZ8PiSU/9Oxtho0rKc8HZqY8uTaV9urOh2d9jo
+unIk9cvM4/SmB7GuWNnqnvpnTQFhavDwr/p9J6e30ZJa+Wb+yOjMoi9U12du579X
+Db38+VUQMmPteyKBgb1t/sWnI83vh7N2bspJX5ybzZx5MTdo9jR0OPbHxlLceeE1
+vljcUX8j/fBwonf31e7GeZp995i1YTGuUNj/aOJSxrXE3jxu/MyOiWRfQ1rR87r8
+pfzeo0kt7ffXpZw+kBD/5t7W1MnNs10zNyc/fN6blj1S17O85dBSa3OOvTDe2RUL
+j7Wej3uVNrGQNd4x1fgppWXkR5v33NkOv51WUPhw/cGMO0NrLzcPDcyPH6cwfOK6
+9huDHSx5
+=0uYS
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/wuffy_
+
+==================================================================
