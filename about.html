@@ -1,6 +1,44 @@
 <html>
 	<head>
 		<title>err... about?</title>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+		<style>
+			body {
+				text-align: center;
+				background-color: #B7158D;
+				font-family: 'Ubuntu', sans-serif;
+				color: #FEFFF2;
+			}
+			a {
+				color: #FEFFF2;
+				text-decoration: none;
+			}
+			h2 {
+				padding-bottom: 25px;
+				font-size: 200%
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+		<script>
+			function cycleColors() {
+				var colours = ["#B7158D", "#000"];
+				var i = 0;
+				
+				COLOUR_CHANGING_TIMEOUT = setTimeout(function loopdeloop() {
+					$("body").animate({backgroundColor: colours[i]}, 2000);
+					i++;
+					if(i >= colours.length) {
+						i = 0;
+					}
+					COLOUR_CHANGING_TIMEOUT = setTimeout(loopdeloop, 5000);
+				});
+			}
+			
+			$(document).ready(function() {
+				cycleColors();
+			})
+		</script>
 	</head>
 	<body>
 		<h1>Wuffy</h1>
@@ -8,5 +46,8 @@
 		<h2>Twitter - <a href="https://www.twitter.com/wuffy_">@wuffy_</a></h2>
 		<h2>Github - <a href="https://www.github.com/captgreen1">captgreen1</a></h2>
 		<h2>Telegram - same as Twitter</h2>
+		<h2>Steam - <a href="http://steamcommunity.com/id/Wurfeh/">Wuffy (just click me, it's easier)</a></h2>
+		<h2>If you're into encryption - <a href="https://keybase.io/wuffy_">keybase.io</a></h2>
+		<h2>1LPktNBw8ov3n7QMJygyt2bhEq7tN1CUxc  &lt;3 </h2>
 	</body>
 </html>

@@ -31,7 +31,8 @@
 			}
 		</style>
 		<script>
-			var TYPING_SPEED = 100;
+			var TYPING_SPEED = 75;
+			var COLOUR_CHANGING_TIMEOUT;
 			
 			function typeToElement(elementID, text) {
 				var i = 0;
@@ -55,6 +56,42 @@
 				}, TYPING_SPEED);
 			}
 			
+			function cycleColours() {
+				var colours = ["#FF0000", "#00FF00", "#0000FF", "#f4f5ef", "#B7158D", "#009802"];
+				var textColours = ["#FFF", "#FFF", "#FFF", "#000", "#FFF", "#FFF"];
+				var i = 0;
+				
+				COLOUR_CHANGING_TIMEOUT = setTimeout(function loopdeloop() {
+					$("body").animate({backgroundColor: colours[i]}, 1000);
+					$("body").animate({color: textColours[i]}, 1000);
+					i++;
+					if(i >= colours.length) {
+						i = 0;
+					}
+					COLOUR_CHANGING_TIMEOUT = setTimeout(loopdeloop, 1010);
+				});
+			}
+			
+			function stepThree() {
+				var texts = [" ", "Pretty cool, isn't it?", "...", "I kinda thought so.", "So, if you could click that little skip link at the bottom...", "That'd be greaaaat. Thanks."];
+				
+				var i = 0;
+				
+				setTimeout(function loopThree() {
+					typeToElement(".text", texts[i]);
+					setTimeout(function() {
+						backspace(".text");
+					}, texts[i].length * TYPING_SPEED + 3000);
+					i++;
+					if(i >= texts.length) {
+						//setTimeout(cycleColours, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000); 
+					}
+					else {
+						setTimeout(loopThree, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000);
+					}
+				})
+			}
+			
 			function nextStep() {
 				var colors = ["#B7158D", "#009802"];
 				var texts = ["I really like this colour.", "And this one."];
@@ -69,7 +106,8 @@
 					}, texts[i].length * TYPING_SPEED + 3000);
 					i++;
 					if(i >= texts.length) {
-						//setTimeout(nextStep, 2 * (wordList[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000); 
+						setTimeout(cycleColours, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000);
+						setTimeout(stepThree, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000); 
 					}
 					else {
 						setTimeout(loopColours, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000);
