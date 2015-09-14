@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<title>wuff.pw</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="assets/js/main.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+		<style>
+			body {
+				background-color: black;
+				color: white;
+			}
+			.vertical-align {
+				display: flex;
+				align-items: center;
+				align-content: center;
+				justify-content: center;
+				height: 96%;
+			}
+			.footer {
+				text-align: center;
+				text-decoration: none;
+			}
+			a {
+				text-decoration: none;
+				color: #fff;
+			}
+			a:hover {
+				text-decoration: none;
+				color: #fff;
+			}
+		</style>
+		<script>
+			var TYPING_SPEED = 100;
+			
+			function typeToElement(elementID, text) {
+				var i = 0;
+				setTimeout(function something() {
+					$(elementID).html(text.substring(0, i + 1));
+					i++;
+					if(i < text.length) {
+						setTimeout(something, TYPING_SPEED);
+					}
+				}, TYPING_SPEED);
+			}
+			
+			function backspace(elementID) {
+				if($(elementID).text().length === 0) {
+					return;
+				}
+				var currentText = $(elementID).text();
+				$(elementID).text(currentText.substring(0, currentText.length - 1));
+				setTimeout(function() {
+					backspace(elementID)
+				}, TYPING_SPEED);
+			}
+			
+			function nextStep() {
+				var colors = ["#B7158D", "#009802"];
+				var texts = ["I really like this colour.", "And this one."];
+				
+				var i = 0;
+				
+				setTimeout(function loopColours() {
+					$("body").animate({backgroundColor: colors[i]}, 1000);
+					typeToElement(".text", texts[i]);
+					setTimeout(function() {
+						backspace(".text");
+					}, texts[i].length * TYPING_SPEED + 3000);
+					i++;
+					if(i >= texts.length) {
+						//setTimeout(nextStep, 2 * (wordList[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000); 
+					}
+					else {
+						setTimeout(loopColours, 2 * (texts[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000);
+					}
+				})
+			}
+			
+			$(document).ready(function() {
+				var wordList = [
+					"Hi.",
+					"I'm Wuffy.",
+					"I'm a wuff. Kinda obvious, I know.",
+					"I make things, like this."
+				];
+				
+				var i = 0;
+				
+				setTimeout(function loop() {
+					typeToElement(".text", wordList[i]);
+					setTimeout(function() {
+						backspace(".text")
+					}, wordList[i].length * TYPING_SPEED + 3000);
+					i++;
+					if(i >= wordList.length) {
+						setTimeout(nextStep, 2 * (wordList[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000); 
+					}
+					else {
+						setTimeout(loop, 2 * (wordList[i - 1].length * TYPING_SPEED) + TYPING_SPEED + 3000);
+					}
+				}, 100);
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div class="vertical-align">
+			<h1 class="text"></h1>
+		</div>
+		<div class="footer">
+			<p><a href="/about">Click me at any time to skip</a></p>
+		</div>
+	</body>
+</html>

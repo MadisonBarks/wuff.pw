@@ -1,0 +1,3 @@
+function typeText(text, targetDiv) {
+	
+}
