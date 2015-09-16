@@ -29,12 +29,7 @@ var filesystem;
 module.exports.execute = function(args, cb) {
 	if(!filesystem) {
 		$.get('/assets/data/files.json', function(data) {
-			if(typeof data === 'string') {
-				filesystem = JSON.parse(data);
-			}
-			else {
-				filesystem = data;
-			}
+			filesystem = data;
 			
 			actuallyExecute(args, cb);
 		})
@@ -56,6 +51,9 @@ function actuallyExecute(args, cb) {
 	var dirParts = dir.split('/');
 	
 	for(var dirPart in dirParts) {
+		if(dirPart === "") {
+			continue;
+		}
 		currentContext = currentContext[dirParts[dirPart]];
 	}
 	
