@@ -1,6 +1,10 @@
 var filesystem;
 
 function getDir(dir, cb) {
+	if(dir === '/') {
+		return filesystem;
+	}
+	
 	var currentContext = filesystem;
 	var dirParts = dir.split('/');
 	

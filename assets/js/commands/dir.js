@@ -14,6 +14,23 @@ module.exports.execute = function(args, cb) {
 		dir = state.getCwd() + dir;
 	}
 	
+	dir = dir.replace('.', state.getCwd());
+	
+	if(dir.indexOf('..') > -1) {
+		var cwd = state.getCwd();
+		var dirParts = cwd.split('/');
+		if(dirParts[dirParts.length - 1] === "") {
+			dirParts = dirParts.splice(0, dirParts.length - 1);
+		}
+		var pwd = '';
+		for(var i = 0; i < dirParts.length - 1; i++) {
+			pwd += dirParts[i];
+			pwd += '/';
+		}
+		
+		dir = pwd;
+	}
+	
 	fs.getDirectory(dir, function(directory) {
 		for(var element in directory.content) {
 			$('body').append(element + "&Tab;");
