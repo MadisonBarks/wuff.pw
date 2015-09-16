@@ -30,7 +30,12 @@ function actuallyExecute(args, cb) {
 		if(dirParts[dirPart] === "") {
 			continue;
 		}
-		currentContext = currentContext[dirParts[dirPart]];
+		if(currentContext.content) {
+			currentContext = currentContext.content[dirParts[dirPart]];
+		}
+		else {
+			currentContext = currentContext[dirParts[dirPart]];
+		}
 	}
 	
 	for(var element in currentContext.content) {
