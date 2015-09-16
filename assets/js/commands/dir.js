@@ -27,7 +27,7 @@ function actuallyExecute(args, cb) {
 	var dirParts = dir.split('/');
 	
 	for(var dirPart in dirParts) {
-		if(dirPart === "") {
+		if(dirParts[dirPart] === "") {
 			continue;
 		}
 		currentContext = currentContext[dirParts[dirPart]];
