@@ -1,4 +1,6 @@
 var emacs = require('./commands/emacs.js');
+var whoami = require('./commands/whoami.js');
+var cat = require('./commands/cat.js');
 
 function blinkCursor() {
 	if($('.cursor').text() === '|') {
@@ -26,19 +28,6 @@ function printPrompt() {
 	$('body').append('<span class="cursor">|</span>');
 }
 
-function processCommand(command, args) {
-	$('body').append('<br />');
-	if(command === 'emacs') {
-		emacs.execute();
-		$('body').append('<br />');
-		printPrompt();
-		return;
-	}
-	$('body').append('<span class="unknown-command">waff: unknown command ' + command);
-	$('body').append('<br />');
-	printPrompt();
-}
-
 function handleInput(event) {
 	//Handles ALL typable keys (Trying to handle then individually was getting... weird.)
 	if(event.charCode && event.which !== 13) {
@@ -60,3 +49,24 @@ $(document).ready(function() {
 	$('body').keypress(handleInput);
 	$('body').keydown(handleWeirdCharacters);
 })
+
+function processCommand(command, args) {
+	$('body').append('<br />');
+	
+	switch(command) {
+		case 'emacs':
+			emacs.execute(args);
+			break;
+		case 'whoami':
+			whoami.execute(args);
+			break;
+		case 'cat':
+			cat.execute(args);
+			break;
+		default:
+			$('body').append('<span class="unknown-command">waff: unknown command ' + command);
+			break;
+	}
+	$('body').append('<br />');
+	printPrompt();
+}
