@@ -1,6 +1,7 @@
 var emacs = require('./commands/emacs.js');
 var whoami = require('./commands/whoami.js');
 var cat = require('./commands/cat.js');
+var dir = require('./commands/dir.js');
 
 function blinkCursor() {
 	if($('.cursor').text() === '|') {
@@ -26,6 +27,7 @@ function printPrompt() {
 	$('body').append('<span class="red"> &gt;&gt;</span> ');
 	$('body').append('<span class="typed-content"></span>');
 	$('body').append('<span class="cursor">|</span>');
+	window.scrollTo(0,document.body.scrollHeight);
 }
 
 function handleInput(event) {
@@ -44,6 +46,13 @@ function handleInput(event) {
 	}
 }
 
+function handleRightClick(event) {
+	if(event.button !== 2) {
+		return;
+	}
+	document.execCommand('copy');
+}
+
 $(document).ready(function() {
 	setTimeout(blinkCursor, 500);
 	$('body').keypress(handleInput);
@@ -54,6 +63,9 @@ function processCommand(command, args) {
 	$('body').append('<br />');
 	
 	switch(command) {
+		case '':
+			printPrompt();
+			break;
 		case 'emacs':
 			emacs.execute(args, processCommandCallback);
 			break;
@@ -62,6 +74,9 @@ function processCommand(command, args) {
 			break;
 		case 'cat':
 			cat.execute(args, processCommandCallback);
+			break;
+		case 'dir':
+			dir.execute(args, processCommandCallback);
 			break;
 		default:
 			$('body').append('<span class="unknown-command">waff: unknown command ' + command);
