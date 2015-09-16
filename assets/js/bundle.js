@@ -21,19 +21,29 @@ module.exports.execute = function(args, cb) {
 		cb();
 	})
 }
-},{"../core/state.js":6}],2:[function(require,module,exports){
+},{"../core/state.js":8}],2:[function(require,module,exports){
 var state = require('../core/state.js');
+var fs = require('../core/filesystem.js');
 
 var filesystem;
 
 module.exports.execute = function(args, cb) {
-	if(!filesystem) {
-		$.get('/assets/data/files.json', function(data) {
-			filesystem = data;
-			
-			actuallyExecute(args, cb);
-		})
+	var dir = args[0];
+	
+	if(!args || args.length === 0 || !args[0]) {
+		dir = state.getCwd();
 	}
+	
+	if(dir.indexOf('/') !== 0) {
+		dir = state.getCwd() + dir;
+	}
+	
+	fs.getDirectory(dir, function(directory) {
+		for(var element in directory.content) {
+			$('body').append(element + "&Tab;");
+		}
+		cb();
+	})
 }
 
 function actuallyExecute(args, cb) {
@@ -68,21 +78,37 @@ function actuallyExecute(args, cb) {
 	
 	cb();
 }
-},{"../core/state.js":6}],3:[function(require,module,exports){
+},{"../core/filesystem.js":7,"../core/state.js":8}],3:[function(require,module,exports){
 module.exports.execute = function(args, cb) {
 	$('body').append('Eww, who uses emacs? Vi master race.');
 	cb();
 }
 },{}],4:[function(require,module,exports){
 module.exports.execute = function(args, cb) {
-	$('body').append('wuffy');
+	$('body').append('Currently, the following commands are implemented:')
+	$('body').append('<br />')
+	$('body').append('&Tab;cat')
+	$('body').append('<br />')
+	$('body').append('&Tab;dir')
+	$('body').append('<br />')
+	$('body').append('&Tab;emacs')
+	$('body').append('<br />')
+	$('body').append('&Tab;whoami')
+	$('body').append('<br />')
+	$('body').append('&Tab;clear')
 	cb();
 }
 },{}],5:[function(require,module,exports){
+module.exports.execute = function(args, cb) {
+	$('body').append('wuffy');
+	cb();
+}
+},{}],6:[function(require,module,exports){
 var emacs = require('./commands/emacs.js');
 var whoami = require('./commands/whoami.js');
 var cat = require('./commands/cat.js');
 var dir = require('./commands/dir.js');
+var help = require('./commands/help.js');
 
 function blinkCursor() {
 	if($('.cursor').text() === '|') {
@@ -159,6 +185,13 @@ function processCommand(command, args) {
 		case 'dir':
 			dir.execute(args, processCommandCallback);
 			break;
+		case 'clear':
+			$('body').html('');
+			printPrompt();
+			break;
+		case 'help':
+			help.execute(args, processCommandCallback);
+			break;
 		default:
 			$('body').append('<span class="unknown-command">waff: unknown command ' + command);
 			processCommandCallback();
@@ -170,7 +203,39 @@ function processCommandCallback() {
 	$('body').append('<br />');
 	printPrompt();
 }
-},{"./commands/cat.js":1,"./commands/dir.js":2,"./commands/emacs.js":3,"./commands/whoami.js":4}],6:[function(require,module,exports){
+},{"./commands/cat.js":1,"./commands/dir.js":2,"./commands/emacs.js":3,"./commands/help.js":4,"./commands/whoami.js":5}],7:[function(require,module,exports){
+var filesystem;
+
+function getDir(dir, cb) {
+	var currentContext = filesystem;
+	var dirParts = dir.split('/');
+	
+	for(var dirPart in dirParts) {
+		if(dirParts[dirPart] === "") {
+			continue;
+		}
+		if(currentContext.content) {
+			currentContext = currentContext.content[dirParts[dirPart]];
+		}
+		else {
+			currentContext = currentContext[dirParts[dirPart]];
+		}
+	}
+	cb(currentContext);
+}
+
+module.exports.getDirectory = function(directory, cb) {
+	if(!filesystem) {
+		$.get('/assets/data/files.json', function(data) {
+			filesystem = data;
+			
+			getDir(directory, cb);
+		})
+	}
+	
+	getDir(directory, cb);
+}
+},{}],8:[function(require,module,exports){
 var cwd = "/home/wuffy/"
 
 module.exports.setCwd = function(newCwd) {
@@ -180,4 +245,4 @@ module.exports.setCwd = function(newCwd) {
 module.exports.getCwd = function() {
 	return cwd;
 }
-},{}]},{},[5]);
+},{}]},{},[6]);

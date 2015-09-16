@@ -2,6 +2,7 @@ var emacs = require('./commands/emacs.js');
 var whoami = require('./commands/whoami.js');
 var cat = require('./commands/cat.js');
 var dir = require('./commands/dir.js');
+var help = require('./commands/help.js');
 
 function blinkCursor() {
 	if($('.cursor').text() === '|') {
@@ -77,6 +78,13 @@ function processCommand(command, args) {
 			break;
 		case 'dir':
 			dir.execute(args, processCommandCallback);
+			break;
+		case 'clear':
+			$('body').html('');
+			printPrompt();
+			break;
+		case 'help':
+			help.execute(args, processCommandCallback);
 			break;
 		default:
 			$('body').append('<span class="unknown-command">waff: unknown command ' + command);
