@@ -12,7 +12,7 @@ module.exports.execute = function(args, cb) {
 				filesystem = data;
 			}
 			
-			
+			actuallyExecute(args, cb);
 		})
 	}
 }
@@ -38,4 +38,6 @@ function actuallyExecute(args, cb) {
 	for(var element in currentContext.content) {
 		$('body').append(element + "&Tab;");
 	}
+	
+	cb();
 }

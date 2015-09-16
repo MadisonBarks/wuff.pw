@@ -36,7 +36,7 @@ module.exports.execute = function(args, cb) {
 				filesystem = data;
 			}
 			
-			
+			actuallyExecute(args, cb);
 		})
 	}
 }
@@ -62,6 +62,8 @@ function actuallyExecute(args, cb) {
 	for(var element in currentContext.content) {
 		$('body').append(element + "&Tab;");
 	}
+	
+	cb();
 }
 },{"../core/state.js":6}],3:[function(require,module,exports){
 module.exports.execute = function(args, cb) {
