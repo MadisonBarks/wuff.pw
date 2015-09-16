@@ -55,18 +55,22 @@ function processCommand(command, args) {
 	
 	switch(command) {
 		case 'emacs':
-			emacs.execute(args);
+			emacs.execute(args, processCommandCallback);
 			break;
 		case 'whoami':
-			whoami.execute(args);
+			whoami.execute(args, processCommandCallback);
 			break;
 		case 'cat':
-			cat.execute(args);
+			cat.execute(args, processCommandCallback);
 			break;
 		default:
 			$('body').append('<span class="unknown-command">waff: unknown command ' + command);
+			processCommandCallback();
 			break;
 	}
+}
+
+function processCommandCallback() {
 	$('body').append('<br />');
 	printPrompt();
 }
