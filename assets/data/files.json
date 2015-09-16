@@ -1,0 +1,21 @@
+{
+	"home": {
+		"name": "home",
+		"type": "directory",
+		"perms": "777",
+		"content": {
+			"wuffy": {
+				"name": "wuffy",
+				"type": "directory",
+				"perms": "740",
+				"content": {
+					"readme.txt": {
+						"name": "readme.txt",
+						"type": "file",
+						"perms": "440"
+					}
+				}
+			}
+		}
+	}
+}
