@@ -1,0 +1,6 @@
+{
+	"ls": "fetchDir",
+	"whoami": "whoami",
+	"dir": "fetchDir",
+	"cd": "changeDir"
+}
